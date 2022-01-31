@@ -1,0 +1,4 @@
+numpy==1.22.1
+opencv-python==4.5.5.62
+PySide6==6.2.2.1
+shiboken6==6.2.2.1
