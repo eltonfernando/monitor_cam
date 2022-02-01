@@ -1,3 +1,4 @@
+from re import L
 from PySide6.QtWidgets import QApplication, QMainWindow, QLabel,QMessageBox
 from PySide6.QtCore import Slot
 import os
@@ -29,6 +30,26 @@ class Controller(QMainWindow):
         self.ui.verticalLayout.addWidget(self.label)
         self.ui.comboBox_cam.addItem(name_cam)
         
+    def update_combo_cliente(self):
+        dir_base = os.path.join("monitor","telegram","config")
+        list_path_cliente = glob(os.path.join(dir_base,"*.json"))
+        if len(list_path_cliente)>0:
+            for path_file_client in list_path_cliente:
+                name_file = os.path.basename(path_file_client).split(".")[0]
+                self.ui.comboBox_name_cliente.addItem(name_file)
+                print(name_file)
+
+    def restore_data(self):
+        self.update_combo_cliente()
+        if os.path.isdir("config"):
+            list_config = glob(os.path.join("config","*.json"))
+            print(list_config)
+            if len(list_config)>0:
+                for path_file in list_config:
+                    name_file = os.path.basename(path_file).split(".")[0]
+                    self.add_cam_view(name_file)
+
+   
     @Slot()
     def on_pushButton_add_clicked(self):
         name_cam = self.ui.comboBox_cam.currentText()
@@ -67,17 +88,28 @@ class Controller(QMainWindow):
         msg.setStandardButtons(msg.Ok)
         msg.exec()
         bot =Bot()
-        bot.find_cliente()                        
-    
-    def restore_data(self):
-        if os.path.isdir("config"):
-            list_config = glob(os.path.join("config","*.json"))
-            print(list_config)
-            if len(list_config)>0:
-                for path_file in list_config:
-                    name_file = os.path.basename(path_file).split(".")[0]
-                    self.add_cam_view(name_file)
+        bot.add_new_cliente() 
+        self.update_combo_cliente()
+                               
+    @Slot()
+    def on_pushButton_teste_msg_client_clicked(self):
+        name_cliente = self.ui.comboBox_name_cliente.currentText()
+        bot = Bot()
+        bot.teste_msg(name_cliente)
 
+        msg = QMessageBox()
+        msg.setText(f'Envio de mensagem')
+        msg.setWindowTitle("Aviso")
+        msg.setInformativeText("Se você recebeu uma mensagem de teste no seu telegram é porque esta tudo ok")
+        msg.setStandardButtons(msg.Ok)
+        msg.exec()
+
+    @Slot()
+    def on_pushButton_del_user_telegram_clicked(self):
+        name_file_cliente = self.ui.comboBox_name_cliente.currentText()
+        self.ui.comboBox_name_cliente.removeItem(self.ui.comboBox_name_cliente.currentIndex())
+        bot = Bot()
+        bot.del_cliente_file(name_file_cliente)
 
 if __name__ == "__main__":
     app = QApplication()

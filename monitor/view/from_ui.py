@@ -150,6 +150,11 @@ class Ui_MainWindow(object):
 
         self.gridLayout_4.addWidget(self.label_5, 1, 0, 1, 1)
 
+        self.pushButton_teste_msg_client = QPushButton(self.centralwidget)
+        self.pushButton_teste_msg_client.setObjectName(u"pushButton_teste_msg_client")
+
+        self.gridLayout_4.addWidget(self.pushButton_teste_msg_client, 4, 2, 1, 1)
+
 
         self.gridLayout_2.addLayout(self.gridLayout_4, 13, 0, 1, 1)
 
@@ -179,5 +184,6 @@ class Ui_MainWindow(object):
         self.label.setText(QCoreApplication.translate("MainWindow", u"Nome Cliente", None))
         self.pushButton_add_user_telegram.setText(QCoreApplication.translate("MainWindow", u"Conectar", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Add Cliente", None))
+        self.pushButton_teste_msg_client.setText(QCoreApplication.translate("MainWindow", u"Teste aviso", None))
     # retranslateUi
 

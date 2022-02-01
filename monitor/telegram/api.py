@@ -26,7 +26,7 @@ class ApiTelegram():
             else:
                 data_json = json.loads(result.content)
                 
-                print(json.dumps(data_json, indent=4, sort_keys=True))
+               # print(json.dumps(data_json, indent=4, sort_keys=True))
                 if data_json["ok"]:
                     self.chat_id=str(data_json["result"][-1]["message"]["chat"]["id"])
                     self.user_name=data_json["result"][-1]["message"]["chat"]["username"]

@@ -26,6 +26,10 @@ class FileConfig():
         else:
             return ""
     
+    def del_file(self):
+        if os.path.isfile(self.path_file_config):
+            os.remove(self.path_file_config)
+
     def read_data(self):
         try:
             with open(self.path_file_config, encoding="utf-8") as file:
