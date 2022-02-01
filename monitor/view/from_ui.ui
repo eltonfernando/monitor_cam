@@ -15,7 +15,17 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
+    <item row="2" column="0">
+     <widget class="QPushButton" name="pushButton_add">
+      <property name="text">
+       <string>Add câmera</string>
+      </property>
+     </widget>
+    </item>
     <item row="0" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout_2"/>
+    </item>
+    <item row="3" column="0">
      <widget class="QScrollArea" name="scrollArea">
       <property name="widgetResizable">
        <bool>true</bool>
@@ -26,7 +36,7 @@
          <x>0</x>
          <y>0</y>
          <width>490</width>
-         <height>411</height>
+         <height>345</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout">
@@ -50,6 +60,13 @@
         </item>
        </layout>
       </widget>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QComboBox" name="comboBox_cam">
+      <property name="editable">
+       <bool>true</bool>
+      </property>
      </widget>
     </item>
    </layout>
