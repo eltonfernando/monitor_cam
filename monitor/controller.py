@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QApplication, QMainWindow, QLabel
+from PySide6.QtWidgets import QApplication, QMainWindow, QLabel,QMessageBox
 from PySide6.QtCore import Slot
 import os
 from glob import glob
@@ -55,6 +55,17 @@ class Controller(QMainWindow):
         self.ui.lineEdit_rstp.setText(str(data.get_rstp_link()))
 
         print("test inde combo ",name_cam)
+    
+    @Slot()
+    def on_pushButton_add_user_telegram_clicked(self):
+        print("clicked get id user")
+        msg = QMessageBox()
+        msg.setText(f'Obtendo ID do telegram')
+        msg.setWindowTitle("Info")
+        msg.setInformativeText("1: Entre no telegram procure pelo usuario @SmartfluxBot \n"
+                                "2: envie a msg /start para o bot")
+        msg.setStandardButtons(msg.Ok)
+        msg.exec()                        
     
     def restore_data(self):
         if os.path.isdir("config"):
