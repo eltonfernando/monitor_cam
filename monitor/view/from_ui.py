@@ -66,57 +66,13 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addLayout(self.gridLayout_3, 1, 0, 1, 1)
 
-        self.gridLayout_4 = QGridLayout()
-        self.gridLayout_4.setObjectName(u"gridLayout_4")
-        self.gridLayout_4.setContentsMargins(5, 5, 5, 5)
-        self.comboBox_name_cliente = QComboBox(self.centralwidget)
-        self.comboBox_name_cliente.setObjectName(u"comboBox_name_cliente")
-        self.comboBox_name_cliente.setMinimumSize(QSize(160, 0))
-        self.comboBox_name_cliente.setEditable(True)
-
-        self.gridLayout_4.addWidget(self.comboBox_name_cliente, 1, 1, 1, 1)
-
-        self.label_5 = QLabel(self.centralwidget)
-        self.label_5.setObjectName(u"label_5")
-        sizePolicy = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
-        self.label_5.setSizePolicy(sizePolicy)
-
-        self.gridLayout_4.addWidget(self.label_5, 2, 0, 1, 1)
-
-        self.pushButton_add_user_telegram = QPushButton(self.centralwidget)
-        self.pushButton_add_user_telegram.setObjectName(u"pushButton_add_user_telegram")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.pushButton_add_user_telegram.sizePolicy().hasHeightForWidth())
-        self.pushButton_add_user_telegram.setSizePolicy(sizePolicy1)
-
-        self.gridLayout_4.addWidget(self.pushButton_add_user_telegram, 2, 1, 1, 1)
-
-        self.label = QLabel(self.centralwidget)
-        self.label.setObjectName(u"label")
-        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
-        self.label.setSizePolicy(sizePolicy)
-
-        self.gridLayout_4.addWidget(self.label, 1, 0, 1, 1)
-
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout_4.addItem(self.horizontalSpacer, 1, 2, 1, 1)
-
-
-        self.gridLayout_2.addLayout(self.gridLayout_4, 13, 0, 1, 1)
-
         self.label_2 = QLabel(self.centralwidget)
         self.label_2.setObjectName(u"label_2")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Minimum)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
-        self.label_2.setSizePolicy(sizePolicy2)
+        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
+        self.label_2.setSizePolicy(sizePolicy)
         font = QFont()
         font.setPointSize(16)
         self.label_2.setFont(font)
@@ -129,7 +85,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 490, 186))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 490, 157))
         self.gridLayout = QGridLayout(self.scrollAreaWidgetContents)
         self.gridLayout.setObjectName(u"gridLayout")
         self.verticalLayout = QVBoxLayout()
@@ -141,6 +97,61 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
         self.gridLayout_2.addWidget(self.scrollArea, 10, 0, 1, 1)
+
+        self.gridLayout_4 = QGridLayout()
+        self.gridLayout_4.setObjectName(u"gridLayout_4")
+        self.gridLayout_4.setContentsMargins(5, 5, 5, 5)
+        self.pushButton_del_user_telegram = QPushButton(self.centralwidget)
+        self.pushButton_del_user_telegram.setObjectName(u"pushButton_del_user_telegram")
+
+        self.gridLayout_4.addWidget(self.pushButton_del_user_telegram, 4, 1, 1, 1)
+
+        self.label_6 = QLabel(self.centralwidget)
+        self.label_6.setObjectName(u"label_6")
+
+        self.gridLayout_4.addWidget(self.label_6, 4, 0, 1, 1)
+
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_4.addItem(self.horizontalSpacer, 2, 2, 1, 1)
+
+        self.comboBox_name_cliente = QComboBox(self.centralwidget)
+        self.comboBox_name_cliente.setObjectName(u"comboBox_name_cliente")
+        self.comboBox_name_cliente.setEnabled(True)
+        self.comboBox_name_cliente.setMinimumSize(QSize(160, 0))
+        self.comboBox_name_cliente.setEditable(False)
+
+        self.gridLayout_4.addWidget(self.comboBox_name_cliente, 2, 1, 1, 1)
+
+        self.label = QLabel(self.centralwidget)
+        self.label.setObjectName(u"label")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy1)
+
+        self.gridLayout_4.addWidget(self.label, 2, 0, 1, 1)
+
+        self.pushButton_add_user_telegram = QPushButton(self.centralwidget)
+        self.pushButton_add_user_telegram.setObjectName(u"pushButton_add_user_telegram")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.pushButton_add_user_telegram.sizePolicy().hasHeightForWidth())
+        self.pushButton_add_user_telegram.setSizePolicy(sizePolicy2)
+
+        self.gridLayout_4.addWidget(self.pushButton_add_user_telegram, 1, 1, 1, 1)
+
+        self.label_5 = QLabel(self.centralwidget)
+        self.label_5.setObjectName(u"label_5")
+        sizePolicy1.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
+        self.label_5.setSizePolicy(sizePolicy1)
+
+        self.gridLayout_4.addWidget(self.label_5, 1, 0, 1, 1)
+
+
+        self.gridLayout_2.addLayout(self.gridLayout_4, 13, 0, 1, 1)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
@@ -162,9 +173,11 @@ class Ui_MainWindow(object):
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"RSTP:", None))
         self.pushButton_add.setText(QCoreApplication.translate("MainWindow", u"Add c\u00e2mera", None))
         self.pushButton_del.setText(QCoreApplication.translate("MainWindow", u"Delete c\u00e2mera", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Obter ID", None))
-        self.pushButton_add_user_telegram.setText(QCoreApplication.translate("MainWindow", u"Obter ID", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Criar alerta telegram", None))
+        self.pushButton_del_user_telegram.setText(QCoreApplication.translate("MainWindow", u"Delete Ouvinte", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Del Cliente", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Nome Cliente", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Criar alerta", None))
+        self.pushButton_add_user_telegram.setText(QCoreApplication.translate("MainWindow", u"Conectar", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Add Cliente", None))
     # retranslateUi
 

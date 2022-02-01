@@ -5,7 +5,7 @@ from glob import glob
 from .view import Ui_MainWindow
 from .setup import __version__
 from .data_base import DataBase
-
+from .telegram import Bot
 class MyLabel(QLabel):
     def __init__(self,parent=None) -> None:
         super().__init__(parent)
@@ -65,7 +65,9 @@ class Controller(QMainWindow):
         msg.setInformativeText("1: Entre no telegram procure pelo usuario @SmartfluxBot \n"
                                 "2: envie a msg /start para o bot")
         msg.setStandardButtons(msg.Ok)
-        msg.exec()                        
+        msg.exec()
+        bot =Bot()
+        bot.find_cliente()                        
     
     def restore_data(self):
         if os.path.isdir("config"):

@@ -12,6 +12,8 @@ class ApiTelegram():
         self.token_bot="2133038248:AAF7a-Azb5xm_RDg03_uqs0SpoXHvoP50t8"
         self.chat_id = "991766209"
         self.msg_bot =  ""
+        self.user_name = ""
+        self.frist_name = ""
     
     def update_id(self)->None:
         url_update = f'https://api.telegram.org/bot{self.token_bot}/getUpdates'
@@ -24,11 +26,13 @@ class ApiTelegram():
             else:
                 data_json = json.loads(result.content)
                 
-                #print(json.dumps(data_json, indent=4, sort_keys=True))
-
-                self.chat_id=data_json["result"][-1]["message"]["chat"]["id"]
-                msg_bot=data_json["result"][-1]["message"]["text"]
-                self.msg_bot=msg_bot.lower()
+                print(json.dumps(data_json, indent=4, sort_keys=True))
+                if data_json["ok"]:
+                    self.chat_id=str(data_json["result"][-1]["message"]["chat"]["id"])
+                    self.user_name=data_json["result"][-1]["message"]["chat"]["username"]
+                    self.frist_name = data_json["result"][-1]["message"]["chat"]["first_name"]
+                    msg_bot=data_json["result"][-1]["message"]["text"]
+                    self.msg_bot = msg_bot.lower()
                  
                             
            # print(result.content)
@@ -38,7 +42,15 @@ class ApiTelegram():
     def get_msg(self)-> str:
         return self.msg_bot
 
-    
+    def get_frist_name(self):
+        return self.frist_name
+
+    def get_id(self):
+        return self.chat_id
+
+    def set_id(self,chat_id):
+        self.chat_id = chat_id
+
     def send_msg(self,msg):
         #msg="olá"
 
@@ -58,4 +70,4 @@ if __name__ =="__main__":
     print("run")
     ob = ApiTelegram()
     ob.update_id()
-    ob.send_msg()
+    ob.send_msg("oi")
