@@ -1,35 +1,49 @@
 from re import L
 from PySide6.QtWidgets import QApplication, QMainWindow, QLabel,QMessageBox
-from PySide6.QtCore import Slot
+from PySide6.QtCore import Slot,QTimer
 import os
 from glob import glob
 from .view import Ui_MainWindow
 from .setup import __version__
 from .data_base import DataBase
 from .telegram import Bot
-class MyLabel(QLabel):
-    def __init__(self,parent=None) -> None:
-        super().__init__(parent)
-    def set_label(self,text):
-        self.setText(text)
+from .process import CamPing
 
 class Controller(QMainWindow):
     def __init__(self):
         super().__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.ui.comboBox_cam.currentIndexChanged.connect(self.on_comboBox_cam_setCurrentIndex)
+
         self.setWindowTitle(f"Monitor {__version__}")
         self.restore_data()
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.timer_event)
         
+        self.cam = CamPing(self)
+        self.cam.aviso.connect(self.log_text)
+        self.cam.result.connect(self.aviso_bot)
     
-    def add_cam_view(self,name_cam):
-        self.label = MyLabel()
-        self.label.set_label(name_cam)
-         
-        self.ui.verticalLayout.addWidget(self.label)
+    def timer_event(self):
+        name_cam = self.ui.comboBox_cam.currentText()
+
+        self.ui.comboBox_cam.removeItem(self.ui.comboBox_cam.currentIndex())
+
+
         self.ui.comboBox_cam.addItem(name_cam)
-        
+        if not self.cam.isRunning():
+            self.cam.set_cam(name_cam)
+            self.cam.start()
+        name_cam = self.ui.comboBox_cam.currentText()
+        data = DataBase(name_cam)
+        self.ui.lineEdit_rstp.setText(data.get_rstp_link())
+
+    
+    @Slot(str)
+    def log_text(self, text):
+        print("sinal")
+        self.ui.textBrowser_log.append(text)
+
     def update_combo_cliente(self):
         dir_base = os.path.join("monitor","telegram","config")
         list_path_cliente = glob(os.path.join(dir_base,"*.json"))
@@ -47,18 +61,23 @@ class Controller(QMainWindow):
             if len(list_config)>0:
                 for path_file in list_config:
                     name_file = os.path.basename(path_file).split(".")[0]
-                    self.add_cam_view(name_file)
+                    self.ui.textBrowser_log.append(name_file)
+                    self.ui.comboBox_cam.addItem(name_file)
 
-   
+    @Slot(str)
+    def aviso_bot(self,text):
+        bot = Bot()
+        bot.alert_user(text)
+
+    
     @Slot()
     def on_pushButton_add_clicked(self):
         name_cam = self.ui.comboBox_cam.currentText()
         rstp_link = self.ui.lineEdit_rstp.text()
         data = DataBase(name_cam)
         data.set_rstp_link(rstp_link)
-
-        print(name_cam)
-        self.add_cam_view(name_cam)
+        self.ui.textBrowser_log.append(f"{name_cam} adicionado")
+        self.ui.comboBox_cam.addItem(name_cam)
     
     @Slot()
     def on_pushButton_del_clicked(self):
@@ -69,13 +88,6 @@ class Controller(QMainWindow):
             os.remove(path_file_config)
             self.ui.comboBox_cam.removeItem(index_selected)
     
-    @Slot()
-    def on_comboBox_cam_setCurrentIndex(self, index):
-        name_cam = self.ui.comboBox_cam.currentText()
-        data = DataBase(name_cam)
-        self.ui.lineEdit_rstp.setText(str(data.get_rstp_link()))
-
-        print("test inde combo ",name_cam)
     
     @Slot()
     def on_pushButton_add_user_telegram_clicked(self):
@@ -87,7 +99,7 @@ class Controller(QMainWindow):
                                 "2: envie a msg /start para o bot")
         msg.setStandardButtons(msg.Ok)
         msg.exec()
-        bot =Bot()
+        bot = Bot()
         bot.add_new_cliente() 
         self.update_combo_cliente()
                                
@@ -110,6 +122,31 @@ class Controller(QMainWindow):
         self.ui.comboBox_name_cliente.removeItem(self.ui.comboBox_name_cliente.currentIndex())
         bot = Bot()
         bot.del_cliente_file(name_file_cliente)
+    
+    @Slot()
+    def on_pushButton_start_monitor_clicked(self):
+        self.ui.textBrowser_log.append("start monitor")
+        if not self.timer.isActive():
+            self.timer.start(4000)
+            self.ui.comboBox_cam.setEditable(False)
+            self.ui.pushButton_add.setEnabled(False)
+            self.ui.pushButton_del.setEnabled(False)
+            self.ui.pushButton_add_user_telegram.setEnabled(False)
+            self.ui.pushButton_del_user_telegram.setEnabled(False)
+            self.ui.pushButton_teste_msg_client.setEnabled(False)
+            self.ui.pushButton_start_monitor.setEnabled(False)
+        
+    @Slot()
+    def on_pushButton_stop_monitor_clicked(self):
+        self.ui.comboBox_cam.setEditable(True)
+        self.ui.pushButton_add.setEnabled(True)
+        self.ui.pushButton_del.setEnabled(True)
+        self.ui.pushButton_add_user_telegram.setEnabled(True)
+        self.ui.pushButton_del_user_telegram.setEnabled(True)
+        self.ui.pushButton_teste_msg_client.setEnabled(True)
+        self.ui.pushButton_start_monitor.setEnabled(True)
+        if self.timer.isActive():
+            self.timer.stop()
 
 if __name__ == "__main__":
     app = QApplication()

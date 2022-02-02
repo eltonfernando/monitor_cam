@@ -18,7 +18,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QComboBox, QGridLayout, QLabel,
     QLineEdit, QMainWindow, QMenuBar, QPushButton,
     QScrollArea, QSizePolicy, QSpacerItem, QStatusBar,
-    QVBoxLayout, QWidget)
+    QTextBrowser, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -66,31 +66,22 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addLayout(self.gridLayout_3, 1, 0, 1, 1)
 
-        self.label_2 = QLabel(self.centralwidget)
-        self.label_2.setObjectName(u"label_2")
-        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Minimum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
-        self.label_2.setSizePolicy(sizePolicy)
-        font = QFont()
-        font.setPointSize(16)
-        self.label_2.setFont(font)
-        self.label_2.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout_2.addWidget(self.label_2, 11, 0, 1, 1)
-
         self.scrollArea = QScrollArea(self.centralwidget)
         self.scrollArea.setObjectName(u"scrollArea")
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 490, 157))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 476, 92))
         self.gridLayout = QGridLayout(self.scrollAreaWidgetContents)
         self.gridLayout.setObjectName(u"gridLayout")
         self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(2, 2, 2, 2)
+        self.textBrowser_log = QTextBrowser(self.scrollAreaWidgetContents)
+        self.textBrowser_log.setObjectName(u"textBrowser_log")
+
+        self.verticalLayout.addWidget(self.textBrowser_log)
+
 
         self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
 
@@ -125,28 +116,28 @@ class Ui_MainWindow(object):
 
         self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
-        self.label.setSizePolicy(sizePolicy1)
+        sizePolicy = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy)
 
         self.gridLayout_4.addWidget(self.label, 2, 0, 1, 1)
 
         self.pushButton_add_user_telegram = QPushButton(self.centralwidget)
         self.pushButton_add_user_telegram.setObjectName(u"pushButton_add_user_telegram")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.pushButton_add_user_telegram.sizePolicy().hasHeightForWidth())
-        self.pushButton_add_user_telegram.setSizePolicy(sizePolicy2)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.pushButton_add_user_telegram.sizePolicy().hasHeightForWidth())
+        self.pushButton_add_user_telegram.setSizePolicy(sizePolicy1)
 
         self.gridLayout_4.addWidget(self.pushButton_add_user_telegram, 1, 1, 1, 1)
 
         self.label_5 = QLabel(self.centralwidget)
         self.label_5.setObjectName(u"label_5")
-        sizePolicy1.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
-        self.label_5.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
+        self.label_5.setSizePolicy(sizePolicy)
 
         self.gridLayout_4.addWidget(self.label_5, 1, 0, 1, 1)
 
@@ -157,6 +148,51 @@ class Ui_MainWindow(object):
 
 
         self.gridLayout_2.addLayout(self.gridLayout_4, 13, 0, 1, 1)
+
+        self.label_2 = QLabel(self.centralwidget)
+        self.label_2.setObjectName(u"label_2")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Minimum)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
+        self.label_2.setSizePolicy(sizePolicy2)
+        font = QFont()
+        font.setPointSize(16)
+        self.label_2.setFont(font)
+        self.label_2.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_2.addWidget(self.label_2, 11, 0, 1, 1)
+
+        self.label_7 = QLabel(self.centralwidget)
+        self.label_7.setObjectName(u"label_7")
+        sizePolicy2.setHeightForWidth(self.label_7.sizePolicy().hasHeightForWidth())
+        self.label_7.setSizePolicy(sizePolicy2)
+        self.label_7.setFont(font)
+        self.label_7.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_2.addWidget(self.label_7, 14, 0, 1, 1)
+
+        self.gridLayout_5 = QGridLayout()
+        self.gridLayout_5.setObjectName(u"gridLayout_5")
+        self.gridLayout_5.setContentsMargins(5, 5, 5, 5)
+        self.pushButton_start_monitor = QPushButton(self.centralwidget)
+        self.pushButton_start_monitor.setObjectName(u"pushButton_start_monitor")
+        sizePolicy1.setHeightForWidth(self.pushButton_start_monitor.sizePolicy().hasHeightForWidth())
+        self.pushButton_start_monitor.setSizePolicy(sizePolicy1)
+
+        self.gridLayout_5.addWidget(self.pushButton_start_monitor, 1, 0, 1, 1)
+
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_5.addItem(self.horizontalSpacer_3, 1, 2, 1, 1)
+
+        self.pushButton_stop_monitor = QPushButton(self.centralwidget)
+        self.pushButton_stop_monitor.setObjectName(u"pushButton_stop_monitor")
+
+        self.gridLayout_5.addWidget(self.pushButton_stop_monitor, 1, 1, 1, 1)
+
+
+        self.gridLayout_2.addLayout(self.gridLayout_5, 15, 0, 1, 1)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
@@ -178,12 +214,15 @@ class Ui_MainWindow(object):
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"RSTP:", None))
         self.pushButton_add.setText(QCoreApplication.translate("MainWindow", u"Add c\u00e2mera", None))
         self.pushButton_del.setText(QCoreApplication.translate("MainWindow", u"Delete c\u00e2mera", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Criar alerta telegram", None))
         self.pushButton_del_user_telegram.setText(QCoreApplication.translate("MainWindow", u"Delete Ouvinte", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Del Cliente", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Nome Cliente", None))
         self.pushButton_add_user_telegram.setText(QCoreApplication.translate("MainWindow", u"Conectar", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Add Cliente", None))
         self.pushButton_teste_msg_client.setText(QCoreApplication.translate("MainWindow", u"Teste aviso", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Criar alerta telegram", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"Iniciar monitoramento", None))
+        self.pushButton_start_monitor.setText(QCoreApplication.translate("MainWindow", u"Iniciar", None))
+        self.pushButton_stop_monitor.setText(QCoreApplication.translate("MainWindow", u"Parar", None))
     # retranslateUi
 
