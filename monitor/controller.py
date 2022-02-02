@@ -93,7 +93,7 @@ class Controller(QMainWindow):
         msg = QMessageBox()
         msg.setText(f'Obtendo ID do telegram')
         msg.setWindowTitle("Info")
-        msg.setInformativeText("1: Entre no telegram procure pelo usuario @SmartfluxBot \n"
+        msg.setInformativeText("1: Entre no telegram procure pelo usuario @SmartfluxBot (ou seu bot) \n"
                                 "2: envie a msg /start para o bot")
         msg.setStandardButtons(msg.Ok)
         msg.exec()
