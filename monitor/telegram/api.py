@@ -14,7 +14,7 @@ class ApiTelegram():
             raise ("não achei token_bot.txt")
 
         self.token_bot = open("token_bot.txt",encoding="utf-8").read().strip()
-        self.chat_id = "991766209"
+        self.chat_id = ""
         self.msg_bot =  ""
         self.first_name = ""
     
