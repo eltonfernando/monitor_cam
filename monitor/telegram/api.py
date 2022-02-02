@@ -5,11 +5,15 @@ usa apo do telegram para avisar bot
 from requests import get,Response,post
 import json
 import logging
+import os
 
 class ApiTelegram():
     def __init__(self) -> None:
         self.log = logging.getLogger(__name__)
-        self.token_bot="2133038248:AAF7a-Azb5xm_RDg03_uqs0SpoXHvoP50t8"
+        if not os.path.isfile("token_bot.txt"):
+            raise ("não achei token_bot.txt")
+
+        self.token_bot = open("token_bot.txt",encoding="utf-8").read().strip()
         self.chat_id = "991766209"
         self.msg_bot =  ""
         self.first_name = ""

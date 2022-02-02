@@ -125,7 +125,7 @@ class Controller(QMainWindow):
     def on_pushButton_start_monitor_clicked(self):
         self.ui.textBrowser_log.append("start monitor")
         if not self.timer.isActive():
-            self.timer.start(4000)
+            self.timer.start(10000)# 10 segundos
             self.ui.comboBox_cam.setEditable(False)
             self.ui.pushButton_add.setEnabled(False)
             self.ui.pushButton_del.setEnabled(False)
