@@ -4,16 +4,17 @@ import threading
 import os
 class Bot():
     def __init__(self) -> None:
+   
         self.chat_id = ""
         self.name_cliente = ""
     
-    def add_new_cliente(self):
-        self.task = threading.Thread(target=self.__resistre_cliente,args=())
+    def add_new_cliente(self,comboBox):
+        self.task = threading.Thread(target=self.__resistre_cliente,args=(comboBox,))
         self.task.start()
         #self.task.join()
 
 
-    def __resistre_cliente(self):
+    def __resistre_cliente(self,comboBox):
         api_bot = ApiTelegram()
         api_bot.update_id()
 
@@ -26,8 +27,10 @@ class Bot():
             if msg.endswith("start"):
                 data = FileConfig(name_cliente)
                 data.set_id_user(chat_id)
+                comboBox.addItem(name_cliente)
             else:
                 print("não é start ", msg)
+    
     def load_data_cliente(self, name_file):
         data = FileConfig(name_file)
         self.chat_id = data.get_id_user()

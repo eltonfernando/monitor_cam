@@ -29,7 +29,6 @@ class Controller(QMainWindow):
 
         self.ui.comboBox_cam.removeItem(self.ui.comboBox_cam.currentIndex())
 
-
         self.ui.comboBox_cam.addItem(name_cam)
         if not self.cam.isRunning():
             self.cam.set_cam(name_cam)
@@ -41,7 +40,6 @@ class Controller(QMainWindow):
     
     @Slot(str)
     def log_text(self, text):
-        print("sinal")
         self.ui.textBrowser_log.append(text)
 
     def update_combo_cliente(self):
@@ -100,7 +98,7 @@ class Controller(QMainWindow):
         msg.setStandardButtons(msg.Ok)
         msg.exec()
         bot = Bot()
-        bot.add_new_cliente() 
+        bot.add_new_cliente(self.ui.comboBox_name_cliente) 
         self.update_combo_cliente()
                                
     @Slot()
