@@ -1,5 +1,5 @@
 import logging
-from re import L
+
 from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QMessageBox
 from PySide6.QtCore import Slot, QTimer
 import os
@@ -22,11 +22,16 @@ class Controller(QMainWindow):
         self.restore_data()
         self.timer = QTimer()
         self.timer.timeout.connect(self.timer_event)
+        self.ui.comboBox_cam.currentTextChanged.connect(self.update_select_combo_cam)
 
         self.cam = CamPing(self)
         self.cam.aviso.connect(self.log_text)
         self.cam.result.connect(self.aviso_bot)
 
+    def update_select_combo_cam(self,text):
+        data = DataBase(text)
+        rtsp = data.get_rtsp_link()
+        self.ui.lineEdit_rstp.setText(rtsp)
 
     def timer_event(self):
 
@@ -47,17 +52,20 @@ class Controller(QMainWindow):
                 name_file = os.path.basename(path_file_client).split(".")[0]
                 self.ui.comboBox_name_cliente.addItem(name_file)
 
-
     def restore_data(self):
         self.update_combo_cliente()
         if os.path.isdir("config"):
             list_config = glob(os.path.join("config", "*.json"))
-            print(list_config)
             if len(list_config) > 0:
                 for path_file in list_config:
                     name_file = os.path.basename(path_file).split(".")[0]
                     self.ui.textBrowser_log.append(name_file)
                     self.ui.comboBox_cam.addItem(name_file)
+
+                name_cam = self.ui.comboBox_cam.currentText()
+                data= DataBase(name_cam)
+                rtsp = data.get_rtsp_link()
+                self.ui.lineEdit_rstp.setText(rtsp)
 
     @Slot(str)
     def aviso_bot(self, text):
