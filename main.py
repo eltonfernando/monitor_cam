@@ -23,9 +23,6 @@ if __name__ == "__main__":
                                    '%(message)s',
                             filename=os.path.join("log", "loger.log"))
 
-
-
-
     app = QApplication()
 
     janela = Controller()

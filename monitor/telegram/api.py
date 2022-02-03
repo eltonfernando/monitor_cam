@@ -30,8 +30,8 @@ class ApiTelegram():
             else:
                 data_json = json.loads(result.content)
                 
-                print(json.dumps(data_json, indent=4, sort_keys=True))
-                print(" aqui")
+               # print(json.dumps(data_json, indent=4, sort_keys=True))
+
                
                 self.chat_id=str(data_json["result"][-1]["message"]["chat"]["id"])
                 self.first_name = data_json["result"][-1]["message"]["chat"]["first_name"] # so para privado

@@ -17,7 +17,7 @@
 <polyline fill="none" stroke="black" points="0,-346.5 274,-346.5 "/>
 <text text-anchor="start" x="8" y="-331.3" font-family="Times,serif" font-size="14.00">chat_id : str</text>
 <text text-anchor="start" x="8" y="-316.3" font-family="Times,serif" font-size="14.00">first_name : str</text>
-<text text-anchor="start" x="8" y="-301.3" font-family="Times,serif" font-size="14.00">log : RootLogger, NoneType, Logger</text>
+<text text-anchor="start" x="8" y="-301.3" font-family="Times,serif" font-size="14.00">log : Logger, NoneType, RootLogger</text>
 <text text-anchor="start" x="8" y="-286.3" font-family="Times,serif" font-size="14.00">msg_bot : str</text>
 <text text-anchor="start" x="8" y="-271.3" font-family="Times,serif" font-size="14.00">token_bot</text>
 <polyline fill="none" stroke="black" points="0,-263.5 274,-263.5 "/>
@@ -54,7 +54,7 @@
 <text text-anchor="start" x="546" y="-286.3" font-family="Times,serif" font-size="14.00">log : RootLogger, Logger, NoneType</text>
 <text text-anchor="start" x="546" y="-271.3" font-family="Times,serif" font-size="14.00">name_cam : str</text>
 <text text-anchor="start" x="546" y="-256.3" font-family="Times,serif" font-size="14.00">result</text>
-<text text-anchor="start" x="546" y="-241.3" font-family="Times,serif" font-size="14.00">rstp : str, int</text>
+<text text-anchor="start" x="546" y="-241.3" font-family="Times,serif" font-size="14.00">rstp : int, str</text>
 <polyline fill="none" stroke="black" points="538,-233.5 810,-233.5 "/>
 <text text-anchor="start" x="546" y="-218.3" font-family="Times,serif" font-size="14.00">run(): </text>
 <text text-anchor="start" x="546" y="-203.3" font-family="Times,serif" font-size="14.00">set_cam(name_cam)</text>
@@ -97,12 +97,12 @@
 <polyline fill="none" stroke="black" points="1088,-324 1362,-324 "/>
 <text text-anchor="start" x="1096" y="-308.8" font-family="Times,serif" font-size="14.00">current_data : dict</text>
 <text text-anchor="start" x="1096" y="-293.8" font-family="Times,serif" font-size="14.00">dir_base : str</text>
-<text text-anchor="start" x="1096" y="-278.8" font-family="Times,serif" font-size="14.00">log : RootLogger, NoneType, Logger</text>
+<text text-anchor="start" x="1096" y="-278.8" font-family="Times,serif" font-size="14.00">log : NoneType, Logger, RootLogger</text>
 <text text-anchor="start" x="1096" y="-263.8" font-family="Times,serif" font-size="14.00">path_file_config</text>
 <polyline fill="none" stroke="black" points="1088,-256 1362,-256 "/>
-<text text-anchor="start" x="1096" y="-240.8" font-family="Times,serif" font-size="14.00">get_rstp_link()</text>
+<text text-anchor="start" x="1096" y="-240.8" font-family="Times,serif" font-size="14.00">get_rtsp_link()</text>
 <text text-anchor="start" x="1096" y="-225.8" font-family="Times,serif" font-size="14.00">read_data()</text>
-<text text-anchor="start" x="1096" y="-210.8" font-family="Times,serif" font-size="14.00">set_rstp_link(rstp: str)</text>
+<text text-anchor="start" x="1096" y="-210.8" font-family="Times,serif" font-size="14.00">set_rtsp_link(rtsp: str)</text>
 <text text-anchor="start" x="1096" y="-195.8" font-family="Times,serif" font-size="14.00">write_data()</text>
 </g>
 <!-- monitor.telegram.client.FileConfig -->

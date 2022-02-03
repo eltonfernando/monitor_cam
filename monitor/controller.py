@@ -1,3 +1,4 @@
+import logging
 from re import L
 from PySide6.QtWidgets import QApplication, QMainWindow, QLabel, QMessageBox
 from PySide6.QtCore import Slot, QTimer
@@ -15,6 +16,7 @@ class Controller(QMainWindow):
         super().__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.log= logging.getLogger(__name__)
 
         self.setWindowTitle(f"Monitor {__version__}")
         self.restore_data()
@@ -25,18 +27,13 @@ class Controller(QMainWindow):
         self.cam.aviso.connect(self.log_text)
         self.cam.result.connect(self.aviso_bot)
 
+
     def timer_event(self):
-        name_cam = self.ui.comboBox_cam.currentText()
 
-        self.ui.comboBox_cam.removeItem(self.ui.comboBox_cam.currentIndex())
-
-        self.ui.comboBox_cam.addItem(name_cam)
         if not self.cam.isRunning():
-            self.cam.set_cam(name_cam)
             self.cam.start()
-        name_cam = self.ui.comboBox_cam.currentText()
-        data = DataBase(name_cam)
-        self.ui.lineEdit_rstp.setText(data.get_rtsp_link())
+        else:
+            self.log.info("thread running")
 
     @Slot(str)
     def log_text(self, text):
@@ -49,7 +46,7 @@ class Controller(QMainWindow):
             for path_file_client in list_path_cliente:
                 name_file = os.path.basename(path_file_client).split(".")[0]
                 self.ui.comboBox_name_cliente.addItem(name_file)
-                print(name_file)
+
 
     def restore_data(self):
         self.update_combo_cliente()
@@ -74,7 +71,10 @@ class Controller(QMainWindow):
         data = DataBase(name_cam)
         data.set_rtsp_link(rstp_link)
         self.ui.textBrowser_log.append(f"{name_cam} adicionado")
-        self.ui.comboBox_cam.addItem(name_cam)
+        print(self.ui.comboBox_cam.findText(name_cam))
+        if self.ui.comboBox_cam.findText(name_cam):
+            self.ui.comboBox_cam.addItem(name_cam)
+
 
     @Slot()
     def on_pushButton_del_clicked(self):
@@ -123,7 +123,7 @@ class Controller(QMainWindow):
     def on_pushButton_start_monitor_clicked(self):
         self.ui.textBrowser_log.append("start monitor")
         if not self.timer.isActive():
-            self.timer.start(10000)  # 10 segundos
+            self.timer.start(5000)  # 10 segundos
             self.ui.comboBox_cam.setEditable(False)
             self.ui.pushButton_add.setEnabled(False)
             self.ui.pushButton_del.setEnabled(False)
