@@ -1,28 +1,26 @@
-from curses.ascii import SI
-from re import T
 import cv2
-from threading import Thread
-from PySide6.QtCore import Signal,QThread
+from PySide6.QtCore import Signal, QThread
 from typing import Type
 from glob import glob
 import os
 import logging
-from ..data_base import DataBase 
+from ..data_base import DataBase
+
 
 class CamPing(QThread):
-    
     """
     tenta conectar em um link rstp para verificar que a câmera esta online
     """
     aviso: Type[Signal] = Signal(str)
     result = Signal(str)
-    def __init__(self,parent) -> None:
+
+    def __init__(self, parent) -> None:
         super().__init__(parent=parent)
         self.log = logging.getLogger(__name__)
         self.rtsp = ""
         self.name_cam = ""
-        self.registre_cam_offline=[]
-    
+        self.registre_cam_offline = []
+
     def run(self) -> None:
         self.aviso.emit("######### Tantando ##############")
         lis_path_file = glob(os.path.join("config", "*.json"))
@@ -56,11 +54,10 @@ class CamPing(QThread):
 
 
         except Exception as error:
-            print("err ",error)
+            print("err ", error)
             self.log.error(error)
 
-        
 
-if __name__ =="__main__":
+if __name__ == "__main__":
     cam = CamPing()
     cam.ping("cam 01")
