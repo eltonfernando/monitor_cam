@@ -29,7 +29,7 @@ class CamPing(QThread):
         self.name_cam = name_cam
         data = DataBase(name_cam)
  
-        self.rstp = data.get_rstp_link()
+        self.rstp = data.get_rtsp_link()
 
 
     def __connect(self):
