@@ -1,5 +1,5 @@
 import os
-from setup import __version__
+from monitor.setup import __version__
 from cx_Freeze import setup, Executable
 from glob import glob
 
@@ -16,12 +16,16 @@ GUI2Exe_Target_1 = Executable(
     icon = os.path.join("resources", "images", "icon.png")
     )
 excludes = ["tkinter"]
-includes = ["cv2","httplib2",]
+includes = ["cv2",]
 #namespace_packages=["multiprocessing.pool"]
 packages=["cv2"]
 path = []
 config_clent:str = os.path.join('monitor',"telegram","config")
-include_files=[("config","config"),(config_clent,config_clent)]
+include_files=[("config","config"),
+               ("log","log"),
+               (config_clent,config_clent),
+               ("resources","resources"),
+               ("token_bot.txt","token_bot.txt")]
 setup(
     version = __version__,
     description = "Monitora links rstp de câmeras",
