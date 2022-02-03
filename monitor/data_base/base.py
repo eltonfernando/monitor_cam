@@ -1,22 +1,29 @@
 import json
 import logging
 import os
+
+
+
 class DataBase():
-    def __init__(self,path_file_config : str) -> None:
+    def __init__(self, path_file_config: str) -> None:
         self.log = logging.getLogger(__name__)
         self.dir_base = "config"
         if not path_file_config.endswith('.json'):
-            path_file_config = path_file_config+".json"
+            path_file_config  = path_file_config + ".json"
 
         self.path_file_config = os.path.join(self.dir_base, path_file_config)
         self.current_data = {}
         self.read_data()
-    
-    def set_rstp_link(self,rstp: str):
-        self.current_data["rstp"]= rstp
+
+    def set_rtsp_link(self, rtsp: str):
+        self.current_data["rtsp"] = rtsp
         self.write_data()
 
-    def get_rstp_link(self):
+    def get_rtsp_link(self):
+
+        if "rtsp" in self.current_data:
+            return self.current_data["rtsp"]
+        # deve ser apagado nas proximas versão
         if "rstp" in self.current_data:
             return self.current_data["rstp"]
         else:
@@ -31,7 +38,7 @@ class DataBase():
 
     def write_data(self):
         try:
-            with open(self.path_file_config,"w", encoding="utf-8") as outfile:
-                json.dump(self.current_data, outfile,indent=2)
+            with open(self.path_file_config, "w", encoding="utf-8") as outfile:
+                json.dump(self.current_data, outfile, indent=2)
         except Exception as error:
             self.log.error(error)

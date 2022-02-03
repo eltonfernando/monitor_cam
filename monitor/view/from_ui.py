@@ -24,7 +24,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(510, 473)
+        MainWindow.resize(510, 688)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout_2 = QGridLayout(self.centralwidget)
@@ -71,7 +71,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 476, 92))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 490, 302))
         self.gridLayout = QGridLayout(self.scrollAreaWidgetContents)
         self.gridLayout.setObjectName(u"gridLayout")
         self.verticalLayout = QVBoxLayout()
@@ -159,6 +159,7 @@ class Ui_MainWindow(object):
         font = QFont()
         font.setPointSize(16)
         self.label_2.setFont(font)
+        self.label_2.setStyleSheet(u"background-color: rgb(135, 135, 135);")
         self.label_2.setAlignment(Qt.AlignCenter)
 
         self.gridLayout_2.addWidget(self.label_2, 11, 0, 1, 1)
@@ -168,6 +169,7 @@ class Ui_MainWindow(object):
         sizePolicy2.setHeightForWidth(self.label_7.sizePolicy().hasHeightForWidth())
         self.label_7.setSizePolicy(sizePolicy2)
         self.label_7.setFont(font)
+        self.label_7.setStyleSheet(u"background-color: rgb(135, 135, 135);")
         self.label_7.setAlignment(Qt.AlignCenter)
 
         self.gridLayout_2.addWidget(self.label_7, 14, 0, 1, 1)
@@ -211,7 +213,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Nome", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"RSTP:", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"RTSP:", None))
         self.pushButton_add.setText(QCoreApplication.translate("MainWindow", u"Add c\u00e2mera", None))
         self.pushButton_del.setText(QCoreApplication.translate("MainWindow", u"Delete c\u00e2mera", None))
         self.pushButton_del_user_telegram.setText(QCoreApplication.translate("MainWindow", u"Delete Ouvinte", None))
@@ -220,7 +222,7 @@ class Ui_MainWindow(object):
         self.pushButton_add_user_telegram.setText(QCoreApplication.translate("MainWindow", u"Conectar", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Add Cliente", None))
         self.pushButton_teste_msg_client.setText(QCoreApplication.translate("MainWindow", u"Teste aviso", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Criar alerta telegram", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Criar alerta para o telegram", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"Iniciar monitoramento", None))
         self.pushButton_start_monitor.setText(QCoreApplication.translate("MainWindow", u"Iniciar", None))
         self.pushButton_stop_monitor.setText(QCoreApplication.translate("MainWindow", u"Parar", None))

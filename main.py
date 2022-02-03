@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QApplication
 from monitor.controller import Controller
 import logging
-
+import os
 if __name__ == "__main__":
     DEBUG = True
     if DEBUG:
@@ -22,9 +22,6 @@ if __name__ == "__main__":
                                    'line %(lineno)d::'
                                    '%(message)s',
                             filename=os.path.join("log", "loger.log"))
-
-
-
 
     app = QApplication()
 

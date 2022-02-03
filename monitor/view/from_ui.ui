@@ -42,7 +42,7 @@
       <item row="1" column="0">
        <widget class="QLabel" name="label_4">
         <property name="text">
-         <string>RSTP:</string>
+         <string>RTSP:</string>
         </property>
        </widget>
       </item>
@@ -229,7 +229,7 @@
        <string notr="true">background-color: rgb(135, 135, 135);</string>
       </property>
       <property name="text">
-       <string>Criar alerta telegram</string>
+       <string>Criar alerta para o telegram</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
