@@ -58,7 +58,8 @@ class Controller(QMainWindow):
         if len(list_path_cliente) > 0:
             for path_file_client in list_path_cliente:
                 name_file = os.path.basename(path_file_client).split(".")[0]
-                self.ui.comboBox_name_cliente.addItem(name_file)
+                if self.ui.comboBox_name_cliente.findText(name_file) == -1:
+                    self.ui.comboBox_name_cliente.addItem(name_file)
 
     def restore_data(self):
         self.update_combo_cliente()
