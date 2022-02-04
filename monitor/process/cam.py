@@ -22,7 +22,7 @@ class CamPing(QThread):
         self.registre_cam_offline = []
 
     def run(self) -> None:
-        self.aviso.emit("######### Tantando ##############")
+        self.aviso.emit("######### Testando ##############")
         lis_path_file = glob(os.path.join("config", "*.json"))
         for path_file in lis_path_file:
             self.name_cam = os.path.basename(path_file).split(".")[0]
@@ -46,10 +46,10 @@ class CamPing(QThread):
                     self.registre_cam_offline.remove(self.name_cam)
                     self.result.emit(f" Câmera {self.name_cam} voltou")
             else:
-                self.aviso.emit(f"erro na câmera {self.name_cam}")
+                self.aviso.emit(f"erro: câmera {self.name_cam} offline")
                 if not self.name_cam in self.registre_cam_offline:
                     self.result.emit(f"Não estou conseguindo acessar a câmera {self.name_cam}")
-                    self.log.info(f'erro connexão {self.name_cam} {self.rtsp}')
+                    self.log.info(f'erro de conexão {self.name_cam} {self.rtsp}')
                     self.registre_cam_offline.append(self.name_cam)
 
 

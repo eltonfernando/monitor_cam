@@ -47,7 +47,7 @@ class Bot():
 
         api_bot = ApiTelegram()
         api_bot.set_id(self.chat_id)
-        msg = f"Oi {self.name_cliente}! essa é uma message de teste"
+        msg = f"Oi {self.name_cliente}! essa é uma mensagem de teste"
         api_bot.send_msg(msg)
 
     def alert_user(self, msg):

@@ -41,8 +41,15 @@ class Controller(QMainWindow):
             self.log.info("thread running")
 
     @Slot(str)
-    def log_text(self, text):
-        self.ui.textBrowser_log.append(text)
+    def log_text(self, text: str):
+        color = "blue"
+        cursor = self.ui.textBrowser_log.textCursor()
+        if text.startswith("erro"):
+            color = "red"
+            cursor.insertHtml('''<h4><br><span style="color: {};">{} </span ></br> </h4>'''.format(color,text))
+        else:
+            cursor.insertHtml('''<p><br <span style="color: {};">{} </span> </br> </p>'''.format(color, text))
+            #self.ui.textBrowser_log.append(text)
 
     def update_combo_cliente(self):
         dir_base = os.path.join("monitor", "telegram", "config")
@@ -99,7 +106,7 @@ class Controller(QMainWindow):
         msg = QMessageBox()
         msg.setText(f'Obtendo ID do telegram')
         msg.setWindowTitle("Info")
-        msg.setInformativeText("1: Entre no telegram procure pelo usuario @SmartfluxBot (ou seu bot) \n"
+        msg.setInformativeText("1: Entre no telegram procure pelo usuário @SmartfluxBot (ou seu bot) \n"
                                "2: envie a msg /start para o bot")
         msg.setStandardButtons(msg.Ok)
         msg.exec()
