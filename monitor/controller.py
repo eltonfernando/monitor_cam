@@ -22,13 +22,14 @@ class Controller(QMainWindow):
         self.restore_data()
         self.timer = QTimer()
         self.timer.timeout.connect(self.timer_event)
-        self.ui.comboBox_cam.currentTextChanged.connect(self.update_select_combo_cam)
+        self.ui.comboBox_cam.activated.connect(self.update_select_combo_cam)
 
         self.cam = CamPing(self)
         self.cam.aviso.connect(self.log_text)
         self.cam.result.connect(self.aviso_bot)
 
-    def update_select_combo_cam(self,text):
+    def update_select_combo_cam(self,index):
+        text = self.ui.comboBox_cam.currentText()
         data = DataBase(text)
         rtsp = data.get_rtsp_link()
         self.ui.lineEdit_rstp.setText(rtsp)
@@ -85,9 +86,9 @@ class Controller(QMainWindow):
         rstp_link = self.ui.lineEdit_rstp.text()
         data = DataBase(name_cam)
         data.set_rtsp_link(rstp_link)
-        self.ui.textBrowser_log.append(f"{name_cam} adicionado")
-        print(self.ui.comboBox_cam.findText(name_cam))
-        if self.ui.comboBox_cam.findText(name_cam):
+
+        if self.ui.comboBox_cam.findText(name_cam)==-1:
+            self.ui.textBrowser_log.append(f"{name_cam} adicionado")
             self.ui.comboBox_cam.addItem(name_cam)
 
 
